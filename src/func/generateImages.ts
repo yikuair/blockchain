@@ -10,44 +10,46 @@ const OUTPUT_DIR = "./generated_images";
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR);
 }
-
-// 生成并保存图片的函数
-const generateAndSaveImage = async (index: number): Promise<void> => {
+async function callApi(param: any, index: number): Promise<any> {
   const API_KEY = process.env.API_KEY;
-  Logger.info(`API_URL:${API_URL} ,API_KEY:[${API_KEY}]`);
+  Logger.info(`${param} .... ${JSON.stringify(param)}`);
   try {
-    // 发送请求到OpenAI API
     const response = await axios.post(
       API_URL,
-      {
-        "prompt": "A purple crow standing on a tombstone, occupying one-third of the image height, with a starry night background.",
-        n: 2, // The amount generated each time
-        size: "1024x1024",
-      },
+      param,
       {
         headers: {
           Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
-    Logger.info(`Received response for image ${index}.`);
+
     const imageUrl: string = response.data.data[0].url;
     Logger.info(`${JSON.stringify(response.data.data)}`);
+
     const imageResponse = await axios.get(imageUrl, {
       responseType: "arraybuffer",
     });
-    const outputPath = path.join(OUTPUT_DIR, `image_${index}.png`);
+
+    const outputPath = path.join(OUTPUT_DIR, `bird_${Date.now()}_${index}.png`);
     fs.writeFileSync(outputPath, imageResponse.data);
-    Logger.info(`Image ${index} saved to ${outputPath}`);
+
+    return response.data; // 返回处理成功的数据
   } catch (error) {
-    Logger.error(`Error generating image ${index}:${error}`);
+    Logger.error(`Error calling API: ${error}`);
+    throw error; // 抛出异常以便调用者处理
   }
-};
-const generateImages = async (): Promise<void> => {
-  for (let i = 0; i < NUM_IMAGES; i++) {
-    await generateAndSaveImage(i);
+}
+const generateImages = async (aiParams: any): Promise<any[]> => {
+  const promises = aiParams.map((param: any, index: number) => callApi(param, index));
+  try {
+    const results = await Promise.all(promises);
+    Logger.info(`All results: , ${JSON.stringify(results)}`);
+    return results;
+  } catch (error) {
+    console.error('Error occurred while generating images:', error);
+    throw error;
   }
-  Logger.info("All images generated.");
-};
+}
 export { generateImages };
