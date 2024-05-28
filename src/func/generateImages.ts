@@ -12,7 +12,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 }
 async function callApi(param: any, index: number): Promise<any> {
   const API_KEY = process.env.API_KEY;
-  Logger.info(`${param} .... ${JSON.stringify(param)}`);
+  Logger.info(`param.... ${JSON.stringify(param)}`);
   try {
     const response = await axios.post(
       API_URL,

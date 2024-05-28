@@ -27,14 +27,15 @@ type BirdAttributes = {
   companions: Companions; // 鸟的伴侣情况
   hasLandmarks: string; // 视野中的名胜古迹
   artStyle: ArtStyle; // 图像的艺术风格
+  other: string; // 其他
 };
 
 export const baseBirdAttributes = {
-  backgroundColor: ['light blue', 'grey', 'sunset orange', 'midnight blue', 'forest green'],
-  birdBodyColor: ['green', 'blue', 'red', 'black', 'white'],
-  birdTailColor: ['red-orange', 'yellow', 'blue', 'purple', 'white'],
-  birdHeadColor: ['yellow with red top', 'black with white stripes', 'blue', 'green', 'red'],
-  birdWingColor: ['green with red accents', 'blue with silver streaks', 'black with gold tips', 'white with grey spots', 'multicolor'],
+  backgroundColor: [''],//['light blue', 'grey', 'sunset orange', 'midnight blue', 'forest green'],
+  birdBodyColor: [''],//['green', 'blue', 'red', 'black', 'white'],
+  birdTailColor: [''],//['red-orange', 'yellow', 'blue', 'purple', 'white'],
+  birdHeadColor: [''],//['yellow with red top', 'black with white stripes', 'blue', 'green', 'red'],
+  birdWingColor: [''],//['green with red accents', 'blue with silver streaks', 'black with gold tips', 'white with grey spots', 'multicolor'],
   eyeSize: [EyeSize.Small, EyeSize.Medium, EyeSize.Large],
   wearsGlasses: [true, false],
   wearsHat: [true, false],
@@ -44,8 +45,13 @@ export const baseBirdAttributes = {
   weather: [Weather.Sunny, Weather.Rainy, Weather.Snowy],
   birdActivity: [BirdActivity.Flying, BirdActivity.Standing, BirdActivity.Foraging],
   birdMood: [Mood.Happy, Mood.Sad, Mood.Neutral, Mood.Curious, Mood.Alert],
-  birdCount: [1, 2, 3, 4, 5],
+  birdCount: [1, 2],
   companions: [Companions.Alone, Companions.WithOthers],
   hasLandmarks: ['天安门', '故宫', '迪斯尼', '长城', '兵马俑', '黄山', '布达拉宫', '颐和园'],
   artStyle: [ArtStyle.Realistic, ArtStyle.Impressionistic, ArtStyle.Surrealistic],
+  // other: ['图片展示了一只黄色头部、绿色身体的鹦鹉。占据了画面约三分之二的高度，象征着深刻的意义。画面传递了对信仰的坚持。整个森林景象郁郁葱葱、充满生机。图中不要显示任何文字包括字母！不要有空白的地方，图片整体焕然一起，也不要出现任何的边框。'],
+  // other: ['背景是个大森林，帮我生成一张可爱的鸟logo，（黄色头部、绿色身体，真实的鸟）'],
+  // other: ['在一个茂密的大森林背景下，生成一张可爱的卡通的鹦鹉logo。这只鸟有黄色的头部和绿色的身体，真实而详细。画面整体充满生机和丰富的细节。'],
+  // other: ['鸟王 （ 黄色头、绿色身体 ） 带着皇冠的 ， 然后接受 鸟，柴犬，青蛙，老鼠，猩猩，猪作为大臣在跪拜'],
+  other: ['A majestic bird king with a yellow head and green body, wearing a crown, is surrounded by various animals in a forest clearing. The scene is bathed in natural sunlight, creating a serene and reverent atmosphere. The animals, including a Shiba Inu dog, frogs, mice, gorillas, and pigs, are all kneeling or standing in admiration and respect towards the bird king. The setting is lush and vibrant, with a sense of harmony and unity among the animals as they pay homage to their ruler.'],
 };

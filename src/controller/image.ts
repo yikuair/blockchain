@@ -7,7 +7,7 @@ import Logger from '../utils/logger';
 export const list = async (request: Request, h: ResponseToolkit): Promise<ResponseObject> => {
   try {
     // 1.生成描述文件
-    const attrs = generateBirdPrompts(100);
+    const attrs = generateBirdPrompts(5);
     // 2.生成ai params
     const aiParams = generateAiParams(attrs);
     Logger.info(`aiParams:${JSON.stringify(aiParams)}`);

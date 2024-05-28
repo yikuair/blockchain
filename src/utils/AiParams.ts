@@ -15,13 +15,14 @@ const generateAiParams = (prompts: PromptAttribute[], baseFormat: BaseFormat = {
   return prompts.map((prompt: PromptAttribute) => {
     // 创建 prompt 字符串，保证属性值的正确表达，特别是对字符串的处理
     const promptParts = Object.entries(prompt).map(([key, value]) =>
-      typeof value === 'string' ? `${key}:"${value}"` : `${key}:${value}`
+      value ? value : ``
     );
 
     // 返回完整的参数对象，结合 baseFormat 中的覆盖设置
     return {
-      prompt: `{${promptParts.join(", ")}}`,
-      // model: 'dall-e-2', // 默认使用 DALL-E 2，可通过 baseFormat 覆盖
+      prompt: promptParts.join(""),
+      model: 'dall-e-2', // 默认使用 DALL-E 2，可通过 baseFormat 覆盖
+      // "model": "dall-e-3",
       // quality: 'standard', // 默认质量，适用于 DALL-E 3
       response_format: 'url', // 默认响应格式
       size: '1024x1024', // 默认图像大小
